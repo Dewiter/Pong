@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=1]
 
-[ext_resource path="res://scenes/game.gd" type="Script" id=1]
+[ext_resource path="res://scenes/main/pong.gd" type="Script" id=1]
 [ext_resource path="res://assets/right_pallete.png" type="Texture" id=2]
 [ext_resource path="res://assets/left_pallete.png" type="Texture" id=3]
 [ext_resource path="res://assets/separator.png" type="Texture" id=4]
@@ -12,8 +12,8 @@ script/source = "extends Sprite\n\n# class member variables go here, for example
 
 [node name="Game" type="Node2D"]
 
-transform/pos = Vector2( 300.229, 198.83 )
-transform/scale = Vector2( 9.38791, 6.22959 )
+transform/pos = Vector2( 511.455, 299.81 )
+transform/scale = Vector2( 15.9887, 9.38522 )
 script/script = ExtResource( 1 )
 
 [node name="left" type="Sprite" parent="."]
