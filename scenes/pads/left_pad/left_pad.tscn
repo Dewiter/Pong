@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://assets/pads/left_pad/left_pad.gd" type="Script" id=1]
+[ext_resource path="res://assets/textures/left.png" type="Texture" id=2]
+
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
+
+[node name="left_pad" type="KinematicBody2D"]
+
+transform/pos = Vector2( 66.9435, 335.987 )
+transform/scale = Vector2( 0.456259, 2.48693 )
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 3.26548, 0, 0, 3.21024, 0.897735, -0.242286 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+script/script = ExtResource( 1 )
+
+[node name="left_texture" type="Sprite" parent="."]
+
+transform/pos = Vector2( -30.8242, -32.055 )
+transform/scale = Vector2( 0.15836, 0.212863 )
+texture = ExtResource( 2 )
+centered = false
+
+[node name="left_hitbox" type="CollisionShape2D" parent="."]
+
+transform/pos = Vector2( 0.897735, -0.242286 )
+transform/scale = Vector2( 3.26548, 3.21024 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+
