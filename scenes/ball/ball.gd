@@ -1,31 +1,28 @@
+
 extends KinematicBody2D
 
-var direction = Vector2(3, 0)
-var Velocity = 300
-const initial_ball_pos = Vector2(0, 0)
-onready var ball = get_node("ball")
+var velocity = 300
+var direction = Vector2(1,0)
+var canMove = false
 
 func _ready():
+	get_node("startTimer").connect("timeout",self,"_startTimerTimeout") 
+	get_node("speedTimer").connect("timeout",self,"_increaseSpeed") 
 	set_fixed_process(true)
 
 func _fixed_process(delta):
-	if(is_colliding() == 1):
-		
-		if(get_collider().is_in_group("pad")):
-			var _diff = get_collider().get_pos().y-get_collision_pos().y
-			direction = Vector2(direction.x* -1,_diff/70*-1)
-		
-		if(get_collider().is_in_group("wall")):
-			direction = Vector2(direction.y * -1 , direction.x)
-		
-		if(get_collider().is_in_group("goal")):
-			direction.x = -direction.x
-			direction.y -= direction.y
-			if (ball.x == 0):
-				direction = Vector2(0, 5)
-				if(ball.x == 0 and ball.y == 0):
-					direction = Vector(0, 0)
+	if canMove:
+		if is_colliding():
+			if get_collider().is_in_group("wall"):
+				direction = Vector2(direction.x,direction.y*-1)
+			if get_collider().is_in_group("player"):
+				var _diff = get_collider().get_pos().y-get_collision_pos().y
+				direction = Vector2(direction.x*-1,_diff/70*-1)
+		move(direction*velocity*delta)
 
-		move(direction * Velocity * delta)
-	else:
-		move(direction)
+func _startTimerTimeout():
+	get_node("speedTimer").start()
+	canMove = true
+
+func _increaseSpeed():
+	velocity += 2
